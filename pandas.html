@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pandas Review</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Alegreya:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic);
+
+      th {color: white; background-color: black; padding-top: 7px; padding-bottom: 7px;}
+      td {padding: 3px; }
+      table { width: 100%; border-collapse: collapse;}
+      td, th {border: 1px solid black; font-size: 95%; text-align: center;
+      }
+      body, h3, h4 { font-family: 'Lato','Times New Roman', 'times', 'serif'; }
+      h1, h2 {
+        font-family: 'Alegreya','Times New Roman', 'times', 'serif';
+        font-weight: normal;
+        font-size: 50%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+      }
+      h4 { font-size: 115%;}
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono';}
+      p {
+        margin-top: 1px;
+        margin-bottom: 1px;
+      }
+      #raptor { width: 50%;}
+      #xkcd { width: 40%;}
+    </style>
+    <link rel="stylesheet" href="pygments.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: middle
+
+# Pandas Review
+
+Matthew J. Lavin
+
+Clinical Assistant Professor of English and Director of Digital Media Lab
+
+University of Pittsburgh
+
+March 2017
+
+---
+class: middle
+
+## Import Pandas, Make a DataFrame
+
+<div class="syntax"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'executions.csv'</span><span class="p">)</span>
+</pre></div>
+
+---
+class: middle
+
+## There's a help Function Built in
+
+<div class="syntax"><pre>help(pd.Series.loc)</pre></div>
+---
+class: middle
+
+## Quickly Convert a Column of Data
+
+<div class="syntax"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">Race</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Race</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">County</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">County</span><span class="p">)</span>
+</pre></div>
+
+---
+class: middle
+
+## Select a Few Columns and Make a New DataFrame
+
+<div class="syntax"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"Race"</span><span class="p">,</span> <span class="s2">"County"</span><span class="p">,</span> <span class="s2">"Execution"</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+---
+
+class: middle
+
+## Group By One or More Columns and Count the Duplicates
+
+<div class="syntax"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'County'</span><span class="p">,</span> <span class="s1">'Race'</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+---
+
+class: middle
+
+## Fill "NA" Values with Zero
+
+<div class="syntax"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+---
+class: middle
+
+## To See the Results, Look at the .ipynb File on Github
+
+
+---
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
